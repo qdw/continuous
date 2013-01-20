@@ -10,7 +10,7 @@ It's super-simple. Open a terminal emulator and run
 
     ./autotest my-test-file
 
-This will re-run your test file whenever you save it¹.
+This will re-run your test file whenever you save it[1].
 
 Also included is on-file-change-do, a more generic shell quickie for running some action when a file changes. It works like this:
 
@@ -30,7 +30,7 @@ Installation
 Footnotes
 =========
 
-1. This assumes you're able to execute your test file. You will be if you remember to 'chmod u+x my-test-file', and if you use the shebang syntax for tests in interpreted programming languages, that is, start the file with
+[1] This assumes you're able to execute your test file. You will be if you remember to 'chmod u+x my-test-file', and if you use the shebang syntax for tests in interpreted programming languages, that is, start the file with
 
     #!/bin/sh
 
