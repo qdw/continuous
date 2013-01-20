@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Usage: on-file-change-do filename 'some shell command'
+
+FILE=$1
+SHELL_COMMAND=$2
+
+OS=$(uname -s)
+
+# This program depends on GNU ls. Take a guess at where it is.
+if [[  $OS == Darwin ]]; then
+    # Use the homebrew version of GNU ls, from the coreutils formula.
+    # This requires you to have homebrew and coreutils installed, of course.
+    LS=gls
+elif [[ $OS == Linux ]]; then
+    LS=ls
+fi
+
+OLD_TIMESTAMP=
+while (true); do
+    TIMESTAMP=$( $LS -l --time-style +%Y-%m-%d--%H-%M-%S $FILE \
+                 | awk '{ print $6 }')
+    if [[ "$TIMESTAMP" -ne "$OLD_TIMESTAMP" ]]; then
+        clear
+        "$SHELL_COMMAND"
+        OLD_TIMESTAMP=$TIMESTAMP
+        TIMESTAMP=
+    fi
+    sleep 1
+done
