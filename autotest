@@ -4,4 +4,4 @@
 
 TEST_FILE=$1
 
-./on-file-change-do $TEST_FILE "./$TEST_FILE"
+on-file-change-do $TEST_FILE "./$TEST_FILE"
