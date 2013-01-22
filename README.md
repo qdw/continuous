@@ -27,6 +27,13 @@ Installation
 1. Edit your shell init file and append this directory to PATH.
 2. There is no step 2.
 
+License
+=======
+See ./LICENSE
+
+TODO
+See ./TODO.md
+
 Footnotes
 =========
 
