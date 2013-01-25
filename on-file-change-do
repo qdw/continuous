@@ -13,18 +13,21 @@ if [[  $OS == Darwin ]]; then
     # This requires you to have homebrew and coreutils installed, of course.
     LS=gls
 elif [[ $OS == Linux ]]; then
+    # You're in luck: you already have a GNU/Linux system.
     LS=ls
 fi
 
 OLD_TIMESTAMP=
 while (true); do
-    TIMESTAMP=$( $LS -l --time-style +%Y-%m-%d--%H-%M-%S $FILE \
-                 | awk '{ print $6 }')
+    TIMESTAMP=$( $LS -l --time-style +%s $FILE | awk '{print $6}' )
+
     if [[ "$TIMESTAMP" -ne "$OLD_TIMESTAMP" ]]; then
         clear
-        "$SHELL_COMMAND"
-        OLD_TIMESTAMP=$TIMESTAMP
-        TIMESTAMP=
+        $SHELL_COMMAND
     fi
+
     sleep 1
+
+    OLD_TIMESTAMP=$TIMESTAMP
+    TIMESTAMP=
 done
